@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#8B1E00">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Surya Connect - Surya Pre-School</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===== LANDING SCREEN ===== -->
+  <div id="landingScreen" class="landing-screen">
+    <img src="logo.png" alt="Surya Connect" class="landing-logo" id="landingLogo">
+    <h1 class="landing-title" id="appTitle">Surya Connect</h1>
+    <p class="landing-school">Surya Pre-School</p>
+    <p class="landing-year">Established 2022</p>
+    <div class="landing-buttons">
+      <button class="btn btn-primary" onclick="showLogin('admin')">
+        <span>🔐</span> Admin Portal
+      </button>
+      <button class="btn btn-secondary" onclick="showLogin('parent')">
+        <span>👨‍👩‍👧‍👦</span> Parent Portal
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <div id="loginScreen" class="login-screen hidden">
+    <img src="logo.png" alt="Surya Connect" class="login-logo">
+    <h1 class="login-title">Surya Connect</h1>
+    <p class="login-subtitle" id="loginSubtitle">Admin Portal</p>
+    <div class="login-card">
+      <div class="login-role-buttons">
+        <button class="login-role-btn" onclick="showLogin('admin')">
+          <span class="icon">🔐</span>
+          <span class="label">Admin</span>
+        </button>
+        <button class="login-role-btn" onclick="showLogin('parent')">
+          <span class="icon">👨‍👩‍👧‍👦</span>
+          <span class="label">Parent</span>
+        </button>
+      </div>
+      <div id="adminLoginForm" class="login-form">
+        <p style="font-size:14px;color:var(--text-light);margin-bottom:20px;">Enter your admin password to access the dashboard.</p>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" class="input-field" id="adminPassword" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()">
+        </div>
+        <button class="btn btn-primary w-full" onclick="adminLogin()">
+          <span>🔓</span> Login
+        </button>
+      </div>
+      <div id="parentLoginForm" class="login-form">
+        <p style="font-size:14px;color:var(--text-light);margin-bottom:20px;">Enter your registered mobile number to login.</p>
+        <div class="input-group">
+          <label>Mobile Number</label>
+          <input type="tel" class="input-field" id="parentPhone" placeholder="Enter your mobile number" onkeydown="if(event.key==='Enter')parentLogin()">
+        </div>
+        <button class="btn btn-secondary w-full" onclick="parentLogin()">
+          <span>📱</span> Login
+        </button>
+      </div>
+      <p style="text-align:center;margin-top:16px;">
+        <button class="btn btn-ghost btn-sm" onclick="showLanding()">← Back to Home</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APP SHELL ===== -->
+  <div id="appShell" class="hidden">
+    <!-- App Header -->
+    <header class="app-header" id="appHeader">
+      <button class="menu-btn" onclick="toggleDrawer()">☰</button>
+      <span class="header-title" id="headerTitle">Dashboard</span>
+      <div class="header-actions">
+        <span class="sync-indicator" id="syncIndicator">
+          <span class="dot synced" id="syncDot"></span>
+          <span id="syncText">Synced</span>
+        </span>
+        <button class="btn btn-ghost btn-sm" onclick="manualSync()" title="Sync Now">🔄</button>
+      </div>
+    </header>
+
+    <!-- Side Drawer -->
+    <div id="drawerOverlay" class="drawer-overlay hidden" onclick="toggleDrawer()"></div>
+    <div id="drawer" class="drawer hidden">
+      <div class="drawer-header">
+        <img src="logo.png" alt="Logo" class="drawer-logo">
+        <div class="drawer-user">
+          <h4 id="drawerName">Admin</h4>
+          <p id="drawerRole">Administrator</p>
+        </div>
+      </div>
+      <div class="drawer-items" id="drawerItems">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content" id="pageContent">
+      <!-- Pages rendered dynamically by app.js -->
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottomNav">
+      <!-- Dynamically populated -->
+    </nav>
+
+    <!-- FAB -->
+    <button class="btn-fab hidden" id="fabButton" onclick="handleFabClick()">+</button>
+  </div>
+
+  <!-- ===== MODAL CONTAINER ===== -->
+  <div id="modalContainer"></div>
+
+  <script src="app.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a122111e2fcee338',t:'MTc4MjUzODMwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
