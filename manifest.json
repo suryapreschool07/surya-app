@@ -1,18 +1,1 @@
-{
-  "name": "Surya Connect - Surya Pre-School",
-  "short_name": "Surya Connect",
-  "description": "Premium School Management System for Surya Pre-School",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#FFF8EC",
-  "theme_color": "#8B1E00",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "logo.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
-}
+{"name":"Surya Connect - Surya Pre-School","short_name":"Surya Connect","start_url":"./","display":"standalone","background_color":"#FFF8EC","theme_color":"#8B1E00","icons":[{"src":"icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icon-512.png","sizes":"512x512","type":"image/png"}]}
